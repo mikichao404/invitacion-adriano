@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>¡Invitación Bomberman!</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net"></script>
+</head>
+<body>
+    <!-- PANTALLA DE INICIO -->
+    <div id="welcome-screen" style="background: rgba(0,0,0,0.8); padding: 40px; border-radius: 20px; max-width: 400px; margin: 50px auto;">
+        <h2>🎮¡HOLA JUGADOR!🎮</h2>
+        <p>Introduce tu nombre para empezar la misión:</p>
+        <input type="text" id="userName" placeholder="Tu nombre aquí..." style="padding: 10px; border-radius: 5px; border: none; width: 80%; font-size: 16px;">
+        <br><br>
+        <button onclick="empezarJuego()" style="padding: 10px 25px; background: #ff4500; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">EMPEZAR NIVEL 💣</button>
+    </div>
+
+    <!-- CONTENEDOR DEL JUEGO (Oculto al inicio) -->
+    <div id="game-container" style="display: none;">
+        <h1>¡Misión: Fiesta de Cumpleaños!</h1>
+        <p id="instrucciones"></p>
+        <div id="grid"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

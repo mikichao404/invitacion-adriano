@@ -1,0 +1,106 @@
+* {
+    touch-action: manipulation; /* Evita el zoom por doble toque */
+}
+
+body { 
+    /* REEMPLAZA 'tu-imagen.jpg' por el nombre exacto de tu archivo */
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('bomberman.png'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white; 
+    font-family: 'Courier New', Courier, monospace; 
+    text-align: center; 
+    margin: 0;
+    padding: 20px;
+}
+
+#game-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+h1 {
+    background: rgba(0, 0, 0, 0.7);
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-shadow: 2px 2px #ff4500;
+}
+
+#grid { 
+    display: grid; 
+    /* Esto obliga a 4 columnas de 80px */
+    grid-template-columns: repeat(4, 80px); 
+    gap: 15px; 
+    justify-content: center; 
+    margin: 30px auto; 
+    width: fit-content;
+}
+
+.block { 
+    width: 80px; 
+    height: 80px; 
+    background: #8B4513; 
+    border: 4px solid #5D2E0A;
+    border-radius: 8px;
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-size: 30px; 
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.block:hover { 
+    background: #A0522D; 
+    transform: scale(1.05);
+}
+
+.boom { 
+    background: #ff4500 !important; 
+    animation: shake 0.2s; 
+}
+
+@keyframes shake { 
+    0% {transform: translate(2px, 2px);} 
+    50% {transform: translate(-2px, -2px);} 
+    100% {transform: translate(0, 0);} 
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    60% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+}
+#grid { 
+    display: grid; 
+    /* Usamos 4 columnas que se adaptan al espacio */
+    grid-template-columns: repeat(4, 70px); 
+    gap: 8px; 
+    justify-content: center; 
+    margin: 20px auto; 
+    width: fit-content;
+}
+
+.block { 
+    width: 70px; /* Un poco más pequeño para móviles */
+    height: 70px; 
+    /* ... resto de tu código de .block ... */
+}
+
+/* --- ESTO ES PARA MÓVILES --- */
+@media (max-width: 400px) {
+    #grid {
+        grid-template-columns: repeat(4, 60px); /* Bloques más pequeños en móviles mini */
+        gap: 5px;
+    }
+    .block {
+        width: 60px;
+        height: 60px;
+        font-size: 25px;
+    }
+    h1 { font-size: 1.2rem; }
+    .card-invitacion { width: 90%; }
+}
