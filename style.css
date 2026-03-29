@@ -1,22 +1,59 @@
 * {
-    touch-action: manipulation; /* Evita el zoom por doble toque */
+    box-sizing: border-box;
+    touch-action: manipulation;
 }
 
-body { 
-    /* REEMPLAZA 'tu-imagen.jpg' por el nombre exacto de tu archivo */
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('bomberman.png'); 
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.26), rgba(0,0,0,0.5)), url('bomberman.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    color: white; 
-    font-family: 'Courier New', Courier, monospace; 
-    text-align: center; 
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
     margin: 0;
     padding: 20px;
+    min-height: 100vh;
+}
+
+.panel-inicio {
+    background: rgba(0, 0, 0, 0.778);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 420px;
+    margin: 50px auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    animation: bounceIn 0.8s ease;
+}
+
+.panel-inicio input {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    width: 85%;
+    font-size: 16px;
+    text-align: center;
+}
+
+.btn-inicio {
+    padding: 12px 25px;
+    background: #ff4500;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-inicio:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255,69,0,0.7);
 }
 
 #game-container {
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
 }
 
@@ -26,47 +63,244 @@ h1 {
     padding: 10px 20px;
     border-radius: 10px;
     text-shadow: 2px 2px #ff4500;
+    margin-bottom: 20px;
 }
 
-#grid { 
-    display: grid; 
-    /* Esto obliga a 4 columnas de 80px */
-    grid-template-columns: repeat(4, 80px); 
-    gap: 15px; 
-    justify-content: center; 
-    margin: 30px auto; 
+.hud {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 15px auto 20px;
+}
+
+.hud-item {
+    background: rgba(0,0,0,0.75);
+    border: 2px solid #ff4500;
+    border-radius: 10px;
+    padding: 10px 14px;
+    min-width: 120px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.35);
+}
+
+#instrucciones {
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(4, 72px);
+    gap: 10px;
+    justify-content: center;
+    margin: 20px auto;
     width: fit-content;
 }
 
-.block { 
-    width: 80px; 
-    height: 80px; 
-    background: #8B4513; 
+.block {
+    width: 72px;
+    height: 72px;
+    background: #8B4513;
     border: 4px solid #5D2E0A;
     border-radius: 8px;
-    cursor: pointer; 
-    display: flex; 
-    align-items: center; 
+    cursor: pointer;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    font-size: 30px; 
-    transition: all 0.3s;
+    font-size: 30px;
+    transition: all 0.25s ease;
     box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    user-select: none;
 }
 
-.block:hover { 
-    background: #A0522D; 
+.block:hover {
+    background: #A0522D;
     transform: scale(1.05);
 }
 
-.boom { 
-    background: #ff4500 !important; 
-    animation: shake 0.2s; 
+.boom {
+    background: #ff4500 !important;
+    animation: shake 0.2s;
 }
 
-@keyframes shake { 
-    0% {transform: translate(2px, 2px);} 
-    50% {transform: translate(-2px, -2px);} 
-    100% {transform: translate(0, 0);} 
+.bloque-deshabilitado {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.card-invitacion {
+    position: relative;
+    background-image:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url('bomberman-fondo-final.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 25px;
+    border-radius: 20px;
+    border: 6px solid #e67e22;
+    max-width: 360px;
+    margin: 30px auto 0;
+    text-align: center;
+    overflow: hidden;
+    animation: bounceIn 0.8s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.card-invitacion h2 {
+    color: #ffd54f;
+    margin: 0;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+}
+
+.card-invitacion h3 {
+    color: #ffffff;
+    margin: 10px 0;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+}
+
+.card-invitacion p {
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+}
+
+.card-invitacion hr {
+    border: 1px dashed #ffd54f;
+    margin: 15px 0;
+}
+
+.cake-icon {
+    font-size: 55px;
+    margin: 10px 0;
+    animation: pulso 1.2s infinite;
+}
+
+.detalle-fiesta {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.btn-confirmar,
+.btn-jugar,
+.btn-reiniciar {
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-confirmar {
+    background: #27ae60;
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+}
+
+.btn-confirmar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(39,174,96,0.8);
+}
+
+.btn-jugar,
+.btn-reiniciar {
+    background: rgba(255,255,255,0.92);
+    color: #444;
+    padding: 10px;
+    font-size: 13px;
+}
+
+.btn-jugar:hover,
+.btn-reiniciar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(255,255,255,0.7);
+}
+
+.decoracion {
+    position: absolute;
+    font-size: 28px;
+    animation: flotar 2s infinite ease-in-out;
+    z-index: 2;
+}
+
+.decoracion1 { top: 10px; left: 15px; }
+.decoracion2 { top: 10px; right: 15px; }
+.decoracion3 { bottom: 15px; left: 20px; }
+.decoracion4 { bottom: 15px; right: 20px; }
+
+.confeti-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confeti {
+    position: absolute;
+    top: -20px;
+    font-size: 22px;
+    animation-name: caerConfeti;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.ranking-box,
+.ranking-preview {
+    margin-top: 18px;
+    background: rgba(0,0,0,0.55);
+    border: 2px solid #ffd54f;
+    border-radius: 14px;
+    padding: 14px;
+}
+
+.ranking-box h3,
+.ranking-preview h3 {
+    margin-top: 0;
+    color: #ffd54f;
+}
+
+.ranking-lista {
+    text-align: left;
+    margin: 0;
+    padding-left: 22px;
+}
+
+.ranking-lista li {
+    margin: 6px 0;
+    font-size: 14px;
+}
+
+.mensaje-final {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffd54f;
+    margin-top: 10px;
+}
+
+.game-over {
+    max-width: 360px;
+    margin: 30px auto 0;
+    background: rgba(0,0,0,0.82);
+    border: 4px solid #ff4500;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    animation: bounceIn 0.8s ease;
+}
+
+.game-over h2 {
+    color: #ff6b3d;
+}
+
+@keyframes shake {
+    0% { transform: translate(2px, 2px); }
+    50% { transform: translate(-2px, -2px); }
+    100% { transform: translate(0, 0); }
 }
 
 @keyframes bounceIn {
@@ -74,33 +308,59 @@ h1 {
     60% { transform: scale(1.1); opacity: 1; }
     100% { transform: scale(1); }
 }
-#grid { 
-    display: grid; 
-    /* Usamos 4 columnas que se adaptan al espacio */
-    grid-template-columns: repeat(4, 70px); 
-    gap: 8px; 
-    justify-content: center; 
-    margin: 20px auto; 
-    width: fit-content;
+
+@keyframes flotar {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
 }
 
-.block { 
-    width: 70px; /* Un poco más pequeño para móviles */
-    height: 70px; 
-    /* ... resto de tu código de .block ... */
+@keyframes pulso {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
 }
 
-/* --- ESTO ES PARA MÓVILES --- */
-@media (max-width: 400px) {
+@keyframes caerConfeti {
+    0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(450px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 430px) {
     #grid {
-        grid-template-columns: repeat(4, 60px); /* Bloques más pequeños en móviles mini */
-        gap: 5px;
+        grid-template-columns: repeat(4, 62px);
+        gap: 6px;
     }
+
     .block {
-        width: 60px;
-        height: 60px;
-        font-size: 25px;
+        width: 62px;
+        height: 62px;
+        font-size: 26px;
     }
-    h1 { font-size: 1.2rem; }
-    .card-invitacion { width: 90%; }
+
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .card-invitacion,
+    .game-over,
+    .panel-inicio {
+        width: 92%;
+        padding: 20px;
+    }
+
+    .hud-item {
+        min-width: 100px;
+        font-size: 14px;
+    }
+
+    .decoracion {
+        font-size: 22px;
+    }
 }
